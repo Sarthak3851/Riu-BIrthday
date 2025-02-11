@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riu Birthday💜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+  
+    
+ <style>
+  *{
+    padding: 0;
+    margin: 0;
+  }
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    @media only screen and (max-width: 768px) {
+  .final-content p {
+    font-size: 1.2rem;  /* Reduce font size for better fit */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    text-align: center; /* Center text */
+  }
+  .new-surprise-text {
+    font-size: 1.2rem;  /* Reduce font size for better fit */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  text-align: center; /* Center text */
+  }
+  .last-screen-container {
+    width: 90%;
+    margin: auto;
+    overflow: visible;
+}
+
+
+  .final-content img {
+  width: 100%;
+  max-width: 280px; /* Reduce max width for mobile */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Centers the image */
+}
+
+  .final-content p {
+  font-size: 1.2rem;  /* Reduce font size for better fit */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  text-align: center; /* Center text */
+}
+
+      /* Make sure text and buttons don't overflow on small screens */
+      .transition-screen {
+        padding: 15px;
+      }
+
+      /* Adjust button styling for smaller screens */
+      .tap-button {
+        font-size: 1rem;
+        padding: 10px;
+        width: 100%; /* Ensure button is responsive */
+      }
+    }
+
+/* Styling for the "Click for a New Surprise!" button */
+.new-transition-button {
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  background-color: #ff7e5f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.new-transition-button:hover {
+  background-color: #feb47b;
+  transform: scale(1.1); /* Scale effect on hover */
+}
+
+/* New Surprise Transition */
+.new-surprise-content {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.new-surprise-content.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+   /* Pulse Effect for Button */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.container button {
+  animation: pulse 2s infinite;
+}
+
+
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #d7a7f4;
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Initial Screen Styling */
+    .container {
+      text-align: center;
+      color: #6a4a96;
+      background-color: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      width: 80%;
+      max-width: 500px;
+      z-index: 1;
+    }
+
+    .container h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+        border: 2px solid rgba(89, 5, 245, 0.911);
+      border-radius: 100px;
+    }
+
+    .container p {
+      font-family: "Kanit", serif;
+        font-size: 1.2rem;
+      margin: 20px ;
+      border: 2px solid black;
+      border-radius:25px;
+    }
+
+    .container button {
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      background-color: #ff7e5f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .container button:hover {
+      background-color: #feb47b;
+    }
+
+    /* Image Styling */
+    .container img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+      border: 5px solid #ff7e5f;  /* Border around the image */
+      padding: 5px;
+    }
+
+    /* New screen with Happy Birthday and Heart Animation */
+    .new-screen {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #d7a7f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      z-index: 0;
+    }
+
+    /* Happy Birthday Text with Animation */
+    .new-screen h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: #6a4a96;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: typing 4s steps(40) 1s forwards, bounce 1s infinite;
+    }
+
+  /* New Image Styling Under the "Happy Birthday" Text */
+#birthdayImage {
+  width: 80%;  /* Adjust width */
+  max-width: 350px;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 5px solid #ff7e5f;  /* Border around the image */
+  padding: 5px;
+  animation: fadeInUp 2s ease-out;  /* Add animation for fade-in effect */
+}
+
+/* Optional: Make sure the image scales well on smaller screens */
+@media (max-width: 768px) {
+  #birthdayImage {
+    width: 90%;  /* Adjust width for mobile screens */
+  }
+}
+
+
+
+    /* Typing Effect */
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    /* Bounce Effect */
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Tap Here Button Styling */
+    .tap-button {
+      display: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff7e5f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+      z-index: 2;
+    }
+
+    .tap-button:hover {
+      background-color: #feb47b;
+    }
+
+    /* New Screen Transition */
+    .transition-screen {
+      opacity: 0;
+      transform: translateY(100px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+      display: none;
+      max-height: 100vh;
+      overflow-y: auto; /* Make the content scrollable */
+    }
+
+    .transition-screen.show {
+      opacity: 1;
+      transform: translateY(0);
+      display: block;
+    }
+
+    /* Image and Text Styling for Transition Screen */
+    .final-content img {
+      width: 80%;
+      max-width: 350px;
+      border-radius: 10px;
+      margin-top: 30px;
+      animation: fadeInOut 5s infinite;
+      border: 5px solid #ff7e5f;  /* Border around the image */
+      padding: 5px;
+    }
+
+    .final-content p {
+      font-size: 2rem;  /* Increased font size */
+      color: #6a4a96;
+      margin-top: 20px;
+      animation: fadeInUp 3s ease-in-out;  /* Added text animation */
+      border: 3px solid #6a4a96;  /* Border around the text */
+      padding: 10px;
+      border-radius: 10px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Heart animation */
+    .heart {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #eb0f21;
+      transform: rotate(45deg);
+      animation: moveHearts 5s linear infinite alternate, popEffect 0.5s ease-out;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #eb0f21;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -25px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 25px;
+      top: 0;
+    }
+
+    @keyframes moveHearts {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(var(--x), var(--y)) scale(1.2); }
+      100% { transform: translate(calc(-1 * var(--x)), calc(-1 * var(--y))) scale(1); }
+    }
+
+    @keyframes popEffect {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Fade In and Out for the Gift Image */
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Animation for Text under the Image */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Initial Screen with Message -->
+  <div class="container" id="initialScreen">
+    <h1>For My Riu Didu💜</h1>
+<p style="font-size: 1.5rem;">It's very special day today🎉✨ A chotu suprise for my Chotu bhen from your Makad😁</p>
+    <!-- Image below the text -->
+    <img src="cat.jpg" alt="Special Birthday Image" />
+
+    <button id="showMessageButton">Click to Reveal</button>
+  </div>
+
+  <!-- New Screen with Happy Birthday Message, Tap Button, and Hearts -->
+  <div class="new-screen" id="newScreen">
+    <h1 id="happyBirthdayText">Happy Birthday RIU 💜</h1>
+ <!-- Hearts Container for the second screen -->
+ <div id="heartsContainerSecondScreen"></div>
+ 
+    <div id="heartsContainer"></div>
+
+     <!-- New Image Under the Text -->
+  <img src="cat 5.jpg" alt="Birthday Image" id="birthdayImage" style="display: none;" />
+
+    <!-- Tap Here Button -->
+    <button class="tap-button" id="tapHereButton">Tap Here 💜</button>
+  </div>
+
+</div>
+  <!-- Final Transition Screen with Image and Text -->
+  <div class="transition-screen" id="transitionScreen">
+    <div class="final-content">
+      <img src="cat3.jpg" alt="Gift Image" />
+<p style="color: white;">Happy 18th Birthday Bhen!🎉✨Today, you step into adulthood, but to me, you’ll always be My Chirkut :). May your journey ahead be filled with endless joy, love, and success. Keep shining like the star you are! ✨
+
+  Love you always! 💖🎂💜</p>
+
+
+    </div>
+     <!-- New Button for Next Transition -->
+     <button class="new-transition-button" id="newTransitionButton">Tap here for next!</button>
+    
+  </div>
+  
+   <!-- New Surprise Content (hidden initially) -->
+   <div id="newSurpriseContent" class="new-surprise-content" style="display: none;">
+<img src="cat4.jpg" alt="New Surprise Image" class="new-surprise-img" style="border: 5px solid #ff7e5f; padding: 5px; border-radius: 10px;" />
+<p class="new-surprise-text" style="position: absolute; top: 138%; left: 50%; transform: translate(-50%, -50%); border: 3px solid #6a4a96; padding: 10px; border-radius: 10px; width: fit-content; font-size: 1.4rem; color: white;">Zindagi ki har khushi mile tujhe,
+  Gam ka ek pal bhi na mile tujhe.
+  Rahe hamesha muskurahat teri,
+  Bas yahi dua hai meri!
+  
+  🎉 Janmadin Mubarak ho, meri pyari behna! 💜</p>
+
+<a href="https://sarthak3851.github.io/Riu-pic/" style="text-decoration: none; color: #6a4a96; font-size: 1.2rem; font-weight: bold; border: 2px solid #6a4a96; padding: 5px; border-radius: 5px; transition: background-color 0.3s ease; position: absolute; top: 195%; left: 50%; transform: translate(-50%, -50%);" onmouseover="this.style.background='#6a4a96'" onmouseout="this.style.background='none'">Click here Chotuz ❤️</a>
+  
+<audio id="backgroundMusic" src="Happy Birthday (Piano Version).mp3" preload="auto" loop></audio>
+
+
+
+  <script>
+
+    // Event listener for the "Click for a New Surprise!" button
+document.getElementById('newTransitionButton').addEventListener('click', function() {
+  // Hide the current transition screen
+  document.getElementById('transitionScreen').style.display = 'none';
+
+  // Show the new surprise content with a smooth transition
+  const newSurpriseContent = document.getElementById('newSurpriseContent');
+  newSurpriseContent.style.display = 'block'; // Ensure it's visible
+  newSurpriseContent.classList.add('show'); // Trigger the transition effect
+
+  // Optional: Add an animation or effect to the new surprise content
+  document.getElementById('newSurpriseContent').style.animation = 'fadeIn 2s ease-out';
+});
+
+    document.getElementById('showMessageButton').addEventListener('click', function() {
+  // Play the audio on button click
+  document.getElementById('backgroundMusic').play();
+});
+
+    let heartInterval;
+    let heartCreationPaused = false;
+
+    // Handle transition to the new screen
+    document.getElementById('showMessageButton').addEventListener('click', function() {
+      // Hide initial screen
+      document.getElementById('initialScreen').style.display = 'none'; 
+      // Show new screen
+      document.getElementById('newScreen').style.display = 'flex'; 
+      document.getElementById('happyBirthdayText').style.opacity = 1;
+      document.getElementById('happyBirthdayText').style.transform = 'translateY(0)';
+
+       // Show the birthday image with a delay for a smooth effect
+  setTimeout(function() {
+    document.getElementById('birthdayImage').style.display = 'block'; // Show the image
+    document.getElementById('birthdayImage').style.animation = 'fadeInUp 2s ease-out'; // Apply the fade-in animation
+  }, 1000);  // Delay by 1 second after the "Click to Reveal" button is clicked
+
+      
+
+
+      // Generate hearts with firework effect
+      startHeartEffect(); 
+      // Show the Tap Here button after 3 seconds
+      setTimeout(function() {
+        document.getElementById('tapHereButton').style.display = 'block'; // Show the button
+      }, 3000); // 3 seconds
+    });
+
+    // Handle transition to final screen when "Tap Here" is clicked
+    document.getElementById('tapHereButton').addEventListener('click', function() {
+      // Hide the current screen
+      document.getElementById('newScreen').style.display = 'none'; 
+      // Show the final screen with a transition effect
+      document.getElementById('transitionScreen').classList.add('show');
+    });
+
+    // Function to create firework-like hearts with controlled generation
+    function startHeartEffect() {
+      heartInterval = setInterval(() => {
+        if (!heartCreationPaused) {
+          createFireworkHearts();
+        }
+      }, 1000); // Slower heart generation every 1000ms
+    }
+
+    // Function to create heart shapes at random positions
+    function createFireworkHearts() {
+   if (document.getElementById('heartsContainer').children.length < 10) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      document.getElementById('heartsContainer').appendChild(heart);
+
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.top = `${Math.random() * 100}vh`;
+      heart.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+      heart.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
+
+      // Remove heart after animation
+      setTimeout(() => heart.remove(), 5000);
+   }
+}
+// Function to create firework-like hearts with controlled generation (updated for second screen)
+function startHeartEffectSecondScreen() {
+  heartInterval = setInterval(() => {
+    if (!heartCreationPaused) {
+      createFireworkHeartsSecondScreen();
+    }
+  }, 1000); // Slower heart generation every 1000ms
+}
+
+// Function to create heart shapes at random positions on the second screen
+function createFireworkHeartsSecondScreen() {
+  if (document.getElementById('heartsContainerSecondScreen').children.length < 10) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    document.getElementById('heartsContainerSecondScreen').appendChild(heart);
+
+    heart.style.left = `${Math.random() * 100}vw`;
+    heart.style.top = `${Math.random() * 100}vh`;
+    heart.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+    heart.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
+
+    // Remove heart after animation
+    setTimeout(() => heart.remove(), 5000);
+  }
+}
+
+// Handle transition to the second screen when "Click to Reveal" is clicked
+document.getElementById('showMessageButton').addEventListener('click', function() {
+  // Hide initial screen
+  document.getElementById('initialScreen').style.display = 'none'; 
+  // Show new screen
+  document.getElementById('newScreen').style.display = 'flex'; 
+  document.getElementById('happyBirthdayText').style.opacity = 1;
+  document.getElementById('happyBirthdayText').style.transform = 'translateY(0)';
+
+  // Show the birthday image with a delay for a smooth effect
+  setTimeout(function() {
+    document.getElementById('birthdayImage').style.display = 'block'; // Show the image
+    document.getElementById('birthdayImage').style.animation = 'fadeInUp 2s ease-out'; // Apply the fade-in animation
+  }, 1000);  // Delay by 1 second after the "Click to Reveal" button is clicked
+
+  // Generate hearts on the second screen
+  startHeartEffectSecondScreen(); 
+
+  // Show the Tap Here button after 3 seconds
+  setTimeout(function() {
+    document.getElementById('tapHereButton').style.display = 'block'; // Show the button
+  }, 3000); // 3 seconds
+});
+
+// Handle transition to the final screen when "Tap Here" is clicked
+document.getElementById('tapHereButton').addEventListener('click', function() {
+  // Hide the current screen
+  document.getElementById('newScreen').style.display = 'none'; 
+  // Show the final screen with a transition effect
+  document.getElementById('transitionScreen').classList.add('show');
+  startHeartEffectSecondScreen(); // Ensure heart effect runs on the second screen
+});
+
+  </script>
+
+</body>
+</html> 
